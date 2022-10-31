@@ -1,1 +1,1 @@
-{"valorDaParcela": "900", "dataPagamento": "27-10-2022", "parcela": "1", "pago": "false", "nome": "Parcela_27-10-2022"}
+{"valorDaParcela":"500","dataPagamento":"01-01-1970","parcela":"1","pago":"true","nome":"Parcela_27-10-2022"}

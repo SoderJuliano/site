@@ -56,7 +56,8 @@
         <p>
             Escolher quantidade de parcelas:
             <select name="quantidadeDeParcelas" value="1" class="form-select" aria-label="Default select example">
-                <option value="1" selected>Este mês</option>
+                <option value="0" selected>Este mês</option>
+                <option value="2">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
