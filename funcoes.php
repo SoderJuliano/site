@@ -43,7 +43,23 @@ if($pagarParcela !== null) {
     
     }
 
-    //echo '<script>window.location.href = "/site/"</script>';
+    echo '<script>
+        setTimeout(function() { 
+            document.write("<p>redirecionando em 4</p>");
+        }, 1000);
+        setTimeout(function() { 
+            document.write("<p>redirecionando em 3</p>");
+        }, 2000);
+        setTimeout(function() { 
+            document.write("<p>redirecionando em 2</p>");
+        }, 3000);
+        setTimeout(function() { 
+            document.write("<p>redirecionando em 1</p>");
+        }, 4000);
+        setTimeout(function() { 
+            window.location.href = "/site/";
+        }, 5000);
+        </script>';
 } 
 
 

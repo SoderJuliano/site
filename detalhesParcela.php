@@ -25,7 +25,6 @@
                         </h3>
                     </div>
                     <p>Status: Pago</p>
-                    <p>Status: Nao Pago</p>
                     <button id="voltar" >Voltar</button>
                 </div>
             </div>
