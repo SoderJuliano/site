@@ -1,8 +1,6 @@
 <?php
 echo 'called me <br/>';
 
-getTheLastDammDate();
-
 $pagarParcela = $_POST['editarObj'];
 
 $parcelas = $_GET['quantidadeDeParcelas'];
@@ -12,7 +10,7 @@ $valor = $_GET['valorDaParcela'];
 $dataHoje = date("d-m-Y");
 
 if($pagarParcela !== null) {
-    //echo $pagarParcela.".txt";
+    echo $pagarParcela.".txt";
     $arquivo = fopen($pagarParcela.".txt", 'r') or die("Unable to open file!");
     $json = fgets($arquivo);
     $obj = json_decode($json);
@@ -25,14 +23,14 @@ if($pagarParcela !== null) {
     
         echo $nome."<br />";
     
-        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "1", "pago": "false", "nome": "'.$nome.'"}';
+        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.$dataHoje.'", "parcela": "1", "pago": "false", "nome": "'.$nome.'"}';
     
         saveFile($nome, $json);
         teste();
     }
     for ($i=0; $i < $parcelas; $i++) {
-
-        $mes = $dataHoje.' '.'+'.$i.' month';
+        $lastaDate = getTheLastDammDate();
+        $mes = $lastaDate ? $lastaDate.' '.'+'.$i.' month' : $dataHoje.' '.'+'.$i.' month';
         echo $dataHoje." ".$mes."<br />";
         $nome = "Parcela_".date('d-m-Y', strtotime($mes));
     
@@ -68,8 +66,7 @@ function teste(){
 
  
 function getTheLastDammDate(){
-    $maiorData = date_create("1989-09-11");
-    $maiorData = date_format($maiorData,"Y-m-d");
+    $maiorData = null;
 
     $arquivos = glob("{*.txt}", GLOB_BRACE);
 
@@ -89,20 +86,23 @@ function getTheLastDammDate(){
         $date2 = date_create($data2);
         $data1 = date_format($date1, 'Y-m-d');
         $data2 = date_format($date2, 'Y-m-d');
-/*   
-        $data1 = (int)str_replace("-", "",$data1);
-        $data2 = (int)str_replace("-", "",$data2);
-
-        echo intval($data1) == intval($data2);
-        echo "<br/>"; */
 
         if(strtotime($data2) > strtotime($data1) && strtotime($data2) > strtotime($maiorData)){
             echo 'data2 '.$data2. ' e maior que '.$data1.'<br/>';
             $maiorData = $data2;
         }
     }
+
+    $maiorData = date_create($maiorData);
+    $maiorData = date_format($maiorData, "d-m-Y");
+
+    $lastDateName = "Parcela_".$maiorData.".txt";
+
     echo '<br/>';
     echo "A maior data e ".$maiorData."<br/>";
+    echo "Último arquivo é ".$lastDateName."<br/>";
+
+    return $maiorData;
 } 
 
 ?>
