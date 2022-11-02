@@ -11,8 +11,15 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <?php include_once('carregarParcela.php'); ?>
+    <?php 
+        include_once('funcoes.php');    
+    ?>
 </head>
+
+<?php 
+    $pegarParcela = $_GET['detalhesObjeto'];
+    $parcela = getObjectByName($pegarParcela);
+?>
 
 <body>
     <div class="container">
@@ -21,13 +28,22 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">     
-                            $obj->nome;
+                            <?php echo $parcela->nome; ?>
                         </h3>
                     </div>
-                    <p>Status: Pago</p>
-                    <button id="voltar" >Voltar</button>
+                    <p>Status: <?php echo $parcela->pago == "true" ? "pago" : "falta pagar"; ?></p>
+                    <p>data limite para pagamento: <?php echo $parcela->dataPagamento; ?></p>
+                    <p>parcela numero de registro: <?php echo $parcela->parcela; ?></p>
+                    <p>Nome do lançador da parcela: <?php echo $parcela->lancador; ?></p>
+                    <button type="button" class="btn btn-primary" id="voltar" >Voltar</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script>
+    $("#voltar").click(function () {
+        window.location.href = "/site/";
+    });
+</script>

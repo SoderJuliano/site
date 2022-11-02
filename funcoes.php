@@ -1,7 +1,9 @@
 <?php
-echo 'called me <br/>';
+echo 'Iniciando procedimento... <br/>';
 
 $pagarParcela = $_POST['editarObj'];
+
+$pegarParcela = $_GET['detalhesObjeto'];
 
 $parcelas = $_GET['quantidadeDeParcelas'];
 
@@ -10,14 +12,13 @@ $valor = $_GET['valorDaParcela'];
 $dataHoje = date("d-m-Y");
 
 if($pagarParcela !== null) {
-    echo $pagarParcela.".txt";
     $arquivo = fopen($pagarParcela.".txt", 'r') or die("Unable to open file!");
     $json = fgets($arquivo);
     $obj = json_decode($json);
     $obj->pago = 'true';
     echo $obj->pago;
     saveFile($obj->nome, json_encode($obj));
-}else{
+}elseif($pagarParcela == null && $pegarParcela == null){
     if($parcelas == 0){
         $nome = "Parcela_".$dataHoje;
     
@@ -28,6 +29,8 @@ if($pagarParcela !== null) {
         saveFile($nome, $json);
         teste();
     }
+    $arquivos = glob("{*.txt}", GLOB_BRACE);
+    $idParcela = sizeof($arquivos)+1;
     for ($i=0; $i < $parcelas; $i++) {
         $lastaDate = getTheLastDammDate();
         $mes = $lastaDate ? $lastaDate.' '.'+'.$i.' month' : $dataHoje.' '.'+'.$i.' month';
@@ -36,32 +39,35 @@ if($pagarParcela !== null) {
     
         echo $nome."<br />";
     
-        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "'.($i+1).'", "pago": "false", "nome": "'.$nome.'"}';
+        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "'.($idParcela+$i).'", "pago": "false", "nome": "'.$nome.'"}';
     
         saveFile($nome, $json);
         teste();
     
     }
 
-    echo '<script>
-        setTimeout(function() { 
-            document.write("<p>redirecionando em 4</p>");
-        }, 1000);
-        setTimeout(function() { 
-            document.write("<p>redirecionando em 3</p>");
-        }, 2000);
-        setTimeout(function() { 
-            document.write("<p>redirecionando em 2</p>");
-        }, 3000);
-        setTimeout(function() { 
-            document.write("<p>redirecionando em 1</p>");
-        }, 4000);
-        setTimeout(function() { 
-            window.location.href = "/site/";
-        }, 5000);
-        </script>';
+    goBack();
 } 
 
+function goBack(){
+    echo '<script>
+    setTimeout(function() { 
+        document.write("<p>redirecionando em 4...</p>");
+    }, 1000);
+    setTimeout(function() { 
+        document.write("<p>redirecionando em 3...</p>");
+    }, 2000);
+    setTimeout(function() { 
+        document.write("<p>redirecionando em 2...</p>");
+    }, 3000);
+    setTimeout(function() { 
+        document.write("<p>redirecionando em 1...</p>");
+    }, 4000);
+    setTimeout(function() { 
+        window.location.href = "/site/";
+    }, 5000);
+    </script>';
+}
 
 function saveFile($name, $value){
     $location = $name.".txt";
@@ -113,12 +119,17 @@ function getTheLastDammDate(){
     $maiorData = date_format($maiorData, "d-m-Y");
 
     $lastDateName = "Parcela_".$maiorData.".txt";
-
+/* 
     echo '<br/>';
     echo "A maior data e ".$maiorData."<br/>";
-    echo "Último arquivo é ".$lastDateName."<br/>";
+    echo "Último arquivo é ".$lastDateName."<br/>"; */
 
     return $maiorData;
 } 
 
+function getObjectByName($name){
+    $arquivo = fopen($name.".txt", 'r') or die("Unable to open file!");
+    $json = fgets($arquivo);
+    return json_decode($json);
+}
 ?>
