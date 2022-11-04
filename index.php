@@ -1,116 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juliano</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <?php include_once('carregarParcela.php'); ?>
+    <style>
+    .divider:after,
+    .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+    }
+
+    .h-custom {
+        height: calc(100% - 73px);
+    }
+
+    @media (max-width: 450px) {
+        .h-custom {
+            height: 100%;
+        }
+    }
+    </style>
+    <script src="options.js"></script>
 </head>
 
 <body>
-<div class="container">
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="./img/negocios.jpg" class="img-fluid" alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form>
+                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                            <p class="lead fw-normal mb-0 me-3">Insira nome e senha para proceguir</p>
+                        </div>
 
-<div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Visão geral das parcelas pagas e pendentes
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-      <h1>Parcelas</h1>
-        <div class="card">
-          <div class="card-header">
-            <span>Todos os arquivos de
-              <select id="selectAno" class="form-select" aria-label="Selecione o ano">
-                <option value="2022" selected>2022</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-              </select>
-            </span>
-          </div>
-          <ul id="conteudoCard" class="list-group list-group-flush">
-          <?php lerTodosArquivos('2022') ?>
-          </ul>
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0">Aqui</p>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <input id="nomeLogin" class="form-control form-control-lg" placeholder="Insira seu nome" />
+                            <label class="form-label" for="form3Example3">Nome</label>
+                        </div>
+
+                        <div class="form-outline mb-3">
+                            <input type="password" id="senhaLogin" class="form-control form-control-lg"
+                                placeholder="Insira sua senha" />
+                            <label class="form-label" for="form3Example4">Senha</label>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button id="login-bnt" type="button" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Lançar novas parcelas
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-      <form action="funcoes.php" method="GET">
-        <p>
-            Escolher quantidade de parcelas:
-            <select name="quantidadeDeParcelas" value="1" class="form-select" aria-label="Default select example">
-                <option value="0" selected>Este mês</option>
-                <option value="2">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </p>
-        <p>
-            Valor:
-<!--  <input type="text" name="valorDaParcela" value="0.0"> -->
-        <div class="input-group mb-2">
-                <span class="input-group-text">R$</span>
-                <input name="valorDaParcela" type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+            <!-- Copyright -->
+            <div class="text-white mb-3 mb-md-0">
+                Copyright © 2022. All rights reserved. Juliano Soder.
+            </div>
+            <!-- Copyright -->
+
+            <!-- Right -->
+            <div>
+                <a href="#!" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#!" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#!" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#!" class="text-white">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <!-- Right -->
         </div>
+    </section>
+    <div class="toast-container position-fixed bottom-0 top-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Login mensagem</strong>
+                <small>Agora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Login inválido.
+            </div>
+        </div>
+    </div>
 
-        </p>
-
-        <button class="btn btn-primary"  type="submit" name="saveBnt" value="saveBnt">Salvar debito</button>
-
-        </form>
-      </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Anexar comprovantes
-      </button>
-    </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-        Em construção...  
-      </div>
-  </div>
-</div>
-
-</div>
 </body>
 
-<script>
-  $("#selectAno").change(function (e) { 
-    e.preventDefault();
-      $.post('carregarParcela.php', { trocouAno: $("#selectAno").val() }, function(response) {
-        $("#conteudoCard").html(response);
-      });
-  });
+</html>
 
-  function pagarParcela(nome) {
-    console.log(nome);
-    $.post('funcoes.php', { editarObj: nome }, function(response) {
-      console.log(response);
-      $.post('carregarParcela.php', { trocouAno: $("#selectAno").val() }, function(response) {
-        $("#conteudoCard").html(response);
-      });
-    });
-  }
+<script>
+$("#login-bnt").click(function() {
+    const name = $("#nomeLogin").val();
+    const senha = $("#senhaLogin").val();
+    if (validaLogin(name, senha)) {
+        window.location.href = "main.php";
+    } {
+        const toastLiveExample = document.getElementById('liveToast')
+        const toast = new bootstrap.Toast(toastLiveExample)
+        toast.show();
+    }
+})
 </script>

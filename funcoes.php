@@ -1,5 +1,5 @@
 <?php
-echo 'Iniciando procedimento... <br/>';
+//echo 'Iniciando procedimento... <br/>';
 
 $pagarParcela = $_POST['editarObj'];
 
@@ -10,6 +10,8 @@ $parcelas = $_GET['quantidadeDeParcelas'];
 $valor = $_GET['valorDaParcela'];
 
 $dataHoje = date("d-m-Y");
+
+$lancador = $_GET['lancadorParcela'];
 
 if($pagarParcela !== null) {
     $arquivo = fopen($pagarParcela.".txt", 'r') or die("Unable to open file!");
@@ -24,7 +26,7 @@ if($pagarParcela !== null) {
     
         echo $nome."<br />";
     
-        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.$dataHoje.'", "parcela": "1", "pago": "false", "nome": "'.$nome.'"}';
+        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.$dataHoje.'", "parcela": "1", "pago": "false", "nome": "'.$nome.'", "lancador": "'.$lancador.'"}';
     
         saveFile($nome, $json);
         teste();
@@ -39,7 +41,7 @@ if($pagarParcela !== null) {
     
         echo $nome."<br />";
     
-        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "'.($idParcela+$i).'", "pago": "false", "nome": "'.$nome.'"}';
+        $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "'.($idParcela+$i).'", "pago": "false", "nome": "'.$nome.'", "lancador": "'.$lancador.'"}';
     
         saveFile($nome, $json);
         teste();

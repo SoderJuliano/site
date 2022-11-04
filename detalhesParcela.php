@@ -33,6 +33,7 @@
                     </div>
                     <p>Status: <?php echo $parcela->pago == "true" ? "pago" : "falta pagar"; ?></p>
                     <p>data limite para pagamento: <?php echo $parcela->dataPagamento; ?></p>
+                    <p>valor: <?php echo "R$ ".$parcela->valorDaParcela; ?></p>
                     <p>parcela numero de registro: <?php echo $parcela->parcela; ?></p>
                     <p>Nome do lançador da parcela: <?php echo $parcela->lancador; ?></p>
                     <button type="button" class="btn btn-primary" id="voltar" >Voltar</button>
