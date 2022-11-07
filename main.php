@@ -19,7 +19,9 @@
 <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
+      
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        <span><i class="bi bi-card-checklist"></i> -></span>
         Visão geral das parcelas pagas e pendentes
       </button>
     </h2>
@@ -46,6 +48,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        <span><i class="bi bi-credit-card"></i> -></span>
         Lançar novas parcelas
       </button>
     </h2>
@@ -89,6 +92,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        <span><i class="bi bi-clipboard-check"></i> -></span>
         Anexar comprovantes
       </button>
     </h2>
