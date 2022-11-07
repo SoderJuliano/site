@@ -76,7 +76,7 @@
             <span class="input-group-text">Lançador do valor</span> 
             <script>
               const user = JSON.parse(localStorage.getItem('login'));
-              document.write('<button name="lancadorParcela" value="'+user.name+'" class="input-group-text" disabled>'+user.name+'</button>');
+              document.write('<input name="lancadorParcela" value="'+user.name+'" class="input-group-text" />');
             </script>
             </div>
         </p>

@@ -11,6 +11,8 @@ $valor = $_GET['valorDaParcela'];
 
 $dataHoje = date("d-m-Y");
 
+$mesReferencia = explode("-", $dataHoje)[1];
+
 $lancador = $_GET['lancadorParcela'];
 
 if($pagarParcela !== null) {
@@ -21,11 +23,18 @@ if($pagarParcela !== null) {
     echo $obj->pago;
     saveFile($obj->nome, json_encode($obj));
 }elseif($pagarParcela == null && $pegarParcela == null){
+    
     if($parcelas == 0){
         $nome = "Parcela_".$dataHoje;
-    
-        echo $nome."<br />";
-    
+        $arquivos = glob("{*.txt}", GLOB_BRACE);
+
+        foreach($arquivos as $arquivo){
+            if(str_contains($arquivo, "-".$mesReferencia."-")){
+                $json = json_decode($arquivo);
+                unlink($json->nome.".txt");
+            }
+        }
+
         $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.$dataHoje.'", "parcela": "1", "pago": "false", "nome": "'.$nome.'", "lancador": "'.$lancador.'"}';
     
         saveFile($nome, $json);
@@ -33,10 +42,11 @@ if($pagarParcela !== null) {
     }
     $arquivos = glob("{*.txt}", GLOB_BRACE);
     $idParcela = sizeof($arquivos)+1;
+    $lastaDate = getTheLastDammDate();
+
     for ($i=0; $i < $parcelas; $i++) {
-        $lastaDate = getTheLastDammDate();
         $mes = $lastaDate ? $lastaDate.' '.'+'.$i.' month' : $dataHoje.' '.'+'.$i.' month';
-        echo $dataHoje." ".$mes."<br />";
+        echo $dataHoje."   <-> ".$mes."<br />";
         $nome = "Parcela_".date('d-m-Y', strtotime($mes));
     
         echo $nome."<br />";
@@ -66,8 +76,11 @@ function goBack(){
         document.write("<p>redirecionando em 1...</p>");
     }, 4000);
     setTimeout(function() { 
-        window.location.href = "/site/";
+        window.location.href = "/site/main.php";
     }, 5000);
+    setTimeout(function() { 
+        window.location.reload;
+    }, 5500);
     </script>';
 }
 

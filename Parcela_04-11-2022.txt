@@ -1,1 +1,0 @@
-{"valorDaParcela": "100", "dataPagamento": "04-11-2022", "parcela": "1", "pago": "false", "nome": "Parcela_04-11-2022", "lancador": ""}

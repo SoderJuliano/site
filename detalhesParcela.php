@@ -45,6 +45,6 @@
 
 <script>
     $("#voltar").click(function () {
-        window.location.href = "/site/";
+        window.location.href = "/site/main.php";
     });
 </script>
