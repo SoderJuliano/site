@@ -52,7 +52,6 @@ if($pagarParcela !== null) {
         foreach($arquivos as $arquivo){
             if(str_contains($arquivo, "-".$mesReferencia."-")){
                 $js = getObjectByName(explode(".txt", $arquivo)[0]);
-                echo "dentro do if  ".$js->nome;
                 unlink($js->nome.".txt");
             }
         }
