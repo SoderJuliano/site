@@ -17,7 +17,6 @@
     </style>
 </head>
 <body id="body">
-    
 </body>
 </html>
 
@@ -52,8 +51,9 @@ if($pagarParcela !== null) {
 
         foreach($arquivos as $arquivo){
             if(str_contains($arquivo, "-".$mesReferencia."-")){
-                $json = json_decode($arquivo);
-                unlink($json->nome.".txt");
+                $js = getObjectByName(explode(".txt", $arquivo)[0]);
+                echo "dentro do if  ".$js->nome;
+                unlink($js->nome.".txt");
             }
         }
 
