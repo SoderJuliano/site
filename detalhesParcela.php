@@ -2,9 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Juliano</title>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal website">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Juliano Soder">
+    <title>Detalhes</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -18,7 +22,13 @@
 
 <?php 
     $pegarParcela = $_GET['detalhesObjeto'];
-    $parcela = getObjectByName($pegarParcela);
+    $apagarParcela = $_GET['bntTrash'];
+
+    if($pegarParcela){
+        $parcela = getObjectByName($pegarParcela);
+    }elseif($pegarParcela == null && $apagarParcela){
+        deleteFile($apagarParcela);
+    }
 ?>
 
 <body>

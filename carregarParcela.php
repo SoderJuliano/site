@@ -29,8 +29,11 @@ function carrgarParcela($url){
             echo '
             <form action="detalhesParcela.php" method="GET" >
                 <li class="list-group-item">'.$obj->dataPagamento.'
+                    <button name="bntTrash" value="'.$obj->nome.'" type="submit" class="btn btn-light">
+                        <i class="bi bi-trash"></i>
+                    </button>
                     <button name="detalhesObjeto" value="'.$obj->nome.'" type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#collapseOne">
-                        <img src="./img/papel-moeda.png" alt="Nao pago png" width="25" height="30"> 
+                        <img src="./img/papel-moeda.png" alt="Nao pago png" width="23" height="20"> 
                     </button>
                     <button value="'.$obj->nome.'" type="button" class="btn btn-success">Pagar</button>
                 </li> 
