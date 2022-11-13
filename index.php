@@ -64,7 +64,7 @@
 
                         <div class="form-outline mb-3">
                             <input type="password" id="senhaLogin" class="form-control form-control-lg"
-                                placeholder="Insira sua senha" />
+                                placeholder="Insira sua senha" onkeypress="handle(event)" />
                             <label class="form-label" for="form3Example4">Senha</label>
                         </div>
 
@@ -126,10 +126,26 @@ $("#login-bnt").click(function() {
     const senha = $("#senhaLogin").val();
     if (validaLogin(name, senha)) {
         window.location.href = "main.php";
-    } {
+    } else {
         const toastLiveExample = document.getElementById('liveToast')
         const toast = new bootstrap.Toast(toastLiveExample)
         toast.show();
     }
 })
+
+function handle(e) {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+
+        const name = $("#nomeLogin").val();
+        const senha = $("#senhaLogin").val();
+        if (validaLogin(name, senha)) {
+            window.location.href = "main.php";
+        } else {
+            const toastLiveExample = document.getElementById('liveToast')
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show();
+        }
+    }
+}
 </script>

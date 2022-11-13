@@ -67,10 +67,10 @@ if($pagarParcela !== null) {
 
     for ($i=0; $i < $parcelas; $i++) {
         $mes = $lastaDate ? $lastaDate.' '.'+'.$i.' month' : $dataHoje.' '.'+'.$i.' month';
-        echo $dataHoje."   <-> ".$mes."<br />";
+        //echo $dataHoje."   <-> ".$mes."<br />";
         $nome = "Parcela_".date('d-m-Y', strtotime($mes));
     
-        echo $nome."<br />";
+        //echo $nome."<br />";
     
         $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "'.($idParcela+$i).'", "pago": "false", "nome": "'.$nome.'", "lancador": "'.$lancador.'"}';
     
