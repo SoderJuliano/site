@@ -8,7 +8,7 @@
     <meta name="description" content="Personal website">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Juliano Soder">
-    <title>Login</title>
+    <title>parcelas.negocio Login</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
