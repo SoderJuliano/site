@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal website">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="Juliano Soder">
-    <title>Working...</title>
-    <style>
-    body{
-        background-image: url("./img/Leo.gif");
-        height: 100%;
-        background-repeat: no-repeat;
-        }
-    </style>
-</head>
-<body id="body">
-</body>
-</html>
-
 <?php
 
 $pagarParcela = $_POST['editarObj'];
@@ -84,24 +62,10 @@ if($pagarParcela !== null) {
 
 function goBack(){
     echo '<script>
-    setTimeout(function() { 
-        document.getElementById("body").innerHTML = "<p>redirecionando em 4...</p>";
-    }, 1000);
-    setTimeout(function() { 
-        document.getElementById("body").innerHTML = "<p>redirecionando em 3...</p>";
-    }, 2000);
-    setTimeout(function() { 
-        document.getElementById("body").innerHTML = "<p>redirecionando em 2...</p>";
-    }, 3000);
-    setTimeout(function() { 
-        document.getElementById("body").innerHTML = "<p>redirecionando em 1...</p>";
-    }, 4000);
-    setTimeout(function() { 
+        setTimeout(function() { 
+            window.location.reload;
+        }, 900);
         window.location.href = "/site/main.php";
-    }, 5000);
-    setTimeout(function() { 
-        window.location.reload;
-    }, 5500);
     </script>';
 }
 

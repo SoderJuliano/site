@@ -19,13 +19,50 @@
 </head>
 
 <body>
+
+<div class="container">
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="./img/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      <img src="./img/php.png" alt="" width="40" height="30" class="d-inline-block align-text-top">
+      Feito usando Bootstrap & PHP
+    </a>
+  </div>
+</nav>  
+        <div class="row align-items-center">
+          <div class="col-12 col-md-5 col-lg-6 order-md-2">
+
+            <!-- Image -->
+            <img src="./img/illustration.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0 aos-init aos-animate" alt="..." data-aos="fade-up" data-aos-delay="100">
+
+          </div>
+          <div class="col-12 col-md-7 col-lg-6 order-md-1 aos-init aos-animate" data-aos="fade-up">
+
+            <!-- Heading -->
+            <h1 class="display-3 text-center text-md-start">
+              Bem vindo a este <span class="text-primary">Site de parcelas</span>. <br>
+              Desenvolvido por <a href="https://www.linkedin.com/in/julianosoder/">mim</a>.
+            </h1>
+
+            <!-- Button -->
+            <div class="text-center text-md-start">
+              <a href="https://github.com/SoderJuliano/site" class="btn btn-primary shadow lift me-1">
+                Ver código no github <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i>
+              </a>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    
 <div class="container">
 
 <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
       
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <button id="visaoParcelas" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         <span><i class="bi bi-card-checklist"></i> -></span>
         Visão geral das parcelas pagas e pendentes
       </button>
@@ -136,4 +173,7 @@
     }else{
       window.location.href = "/site/";
   }
+  $( document ).ready(function() {
+    $("#visaoParcelas").click();
+});
 </script>
