@@ -41,16 +41,17 @@
 
             <!-- Heading -->
             <h1 class="display-3 text-center text-md-start">
-              Bem vindo a este <span class="text-primary">Site de parcelas</span>. <br>
-              Desenvolvido por <a href="https://www.linkedin.com/in/julianosoder/">mim</a>.
-            </h1>
-
-            <!-- Button -->
-            <div class="text-center text-md-start">
-              <a href="https://github.com/SoderJuliano/site" class="btn btn-primary shadow lift me-1">
-                Ver código no github <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i>
-              </a>
+              Bem vindo ao <span class="text-primary">site de parcelas</span>. <br>
+              Juliano Soder 
+              <div class="text-center text-md-start">
+                <a href="https://www.linkedin.com/in/julianosoder/" class="btn btn-primary shadow lift me-1">
+                  linkedin <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i>
+                </a>
+                <a href="https://github.com/SoderJuliano/site" class="btn btn-primary shadow lift me-1">
+                  Ver código no github <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i>
+                </a>
             </div>
+            </h1>
 
           </div>
         </div> <!-- / .row -->
@@ -63,8 +64,8 @@
     <h2 class="accordion-header" id="flush-headingOne">
       
       <button id="visaoParcelas" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        <span><i class="bi bi-card-checklist"></i> -></span>
-        Visão geral das parcelas pagas e pendentes
+        <h3><i class="bi bi-card-checklist"></i> -></h3>
+        <h3>Visão geral das parcelas pagas e pendentes</h3>
       </button>
     </h2>
     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -90,8 +91,8 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        <span><i class="bi bi-credit-card"></i> -></span>
-        Lançar novas parcelas
+        <h3><i class="bi bi-credit-card"></i> -></h3>
+          <h3>Lançar novas parcelas</h3>
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -134,8 +135,8 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        <span><i class="bi bi-clipboard-check"></i> -></span>
-        Anexar comprovantes
+        <h3><i class="bi bi-clipboard-check"></i> -></h3>
+          <h3>Anexar comprovantes</h3>
       </button>
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
