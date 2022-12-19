@@ -50,7 +50,7 @@
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form>
                         <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Insira nome e senha para proceguir</p>
+                            <p class="lead fw-normal mb-0 me-3">Insira nome e senha para prosseguir</p>
                         </div>
 
                         <div class="divider d-flex align-items-center my-4">
