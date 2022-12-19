@@ -58,13 +58,13 @@
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input id="nomeLogin" class="form-control form-control-lg" placeholder="Insira seu nome" />
+                            <input id="nomeLogin" class="form-control form-control-lg" placeholder="Insira seu nome" value="Teste"/>
                             <label class="form-label" for="form3Example3">Nome</label>
                         </div>
 
                         <div class="form-outline mb-3">
                             <input type="password" id="senhaLogin" class="form-control form-control-lg"
-                                placeholder="Insira sua senha" onkeypress="handle(event)" />
+                                placeholder="Insira sua senha" onkeypress="handle(event)" value="teste123" />
                             <label class="form-label" for="form3Example4">Senha</label>
                         </div>
 

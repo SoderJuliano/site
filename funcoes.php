@@ -2,6 +2,8 @@
 
 $pagarParcela = $_POST['editarObj'];
 
+$comprovante = $_POST['comprovante'];
+
 $pegarParcela = $_GET['detalhesObjeto'];
 
 $parcelas = $_GET['quantidadeDeParcelas'];
@@ -13,12 +15,16 @@ $dataHoje = date("d-m-Y");
 $mesReferencia = explode("-", $dataHoje)[1];
 
 $lancador = $_GET['lancadorParcela'];
+/* 
+echo "pagar parcela ".$pagarParcela;
+echo "pagar parcela ".$comprovante; */
 
-if($pagarParcela !== null) {
+if($pagarParcela !== null && $comprovante !== null) {
     $arquivo = fopen($pagarParcela.".txt", 'r') or die("Unable to open file!");
     $json = fgets($arquivo);
     $obj = json_decode($json);
     $obj->pago = 'true';
+    $obj->img = $comprovante;
     echo $obj->pago;
     saveFile($obj->nome, json_encode($obj));
 }elseif($pagarParcela == null && $pegarParcela == null){
@@ -45,10 +51,8 @@ if($pagarParcela !== null) {
 
     for ($i=0; $i < $parcelas; $i++) {
         $mes = $lastaDate ? $lastaDate.' '.'+'.$i.' month' : $dataHoje.' '.'+'.$i.' month';
-        //echo $dataHoje."   <-> ".$mes."<br />";
         $nome = "Parcela_".date('d-m-Y', strtotime($mes));
     
-        //echo $nome."<br />";
     
         $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "'.($idParcela+$i).'", "pago": "false", "nome": "'.$nome.'", "lancador": "'.$lancador.'"}';
     
@@ -131,5 +135,9 @@ function getObjectByName($name){
     $arquivo = fopen($name.".txt", 'r') or die("Unable to open file!");
     $json = fgets($arquivo);
     return json_decode($json);
+}
+
+function getAllObjectsByUser($user){
+
 }
 ?>

@@ -136,12 +136,14 @@
     <h2 class="accordion-header" id="flush-headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
         <h3><i class="bi bi-clipboard-check"></i> -></h3>
-          <h3>Anexar comprovantes</h3>
+          <h3>Comprovantes</h3>
       </button>
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
-        Em construção...  
+        <?php
+          include_once('comprovatesPagina.php');
+        ?>
       </div>
   </div>
 </div>
@@ -157,9 +159,9 @@
       });
   });
 
-  function pagarParcela(nome) {
-    console.log(nome);
-    $.post('funcoes.php', { editarObj: nome }, function(response) {
+  function pagarParcela(nome, img) {
+    console.log(img);
+    $.post('funcoes.php', { editarObj: nome, comprovante: img }, function(response) {
       console.log(response);
       $.post('carregarParcela.php', { trocouAno: $("#selectAno").val() }, function(response) {
         $("#conteudoCard").html(response);
@@ -177,4 +179,24 @@
   $( document ).ready(function() {
     $("#visaoParcelas").click();
 });
+
+function readFile() {
+        if (!this.files || !this.files[0]) return;
+        const FR = new FileReader();
+    
+        FR.addEventListener("load", function(evt) {
+            //document.querySelector("#img").src         = evt.target.result;
+            document.querySelector("#b64").textContent = evt.target.result;
+    }); 
+    
+FR.readAsDataURL(this.files[0]);  
+document.getElementById("pagar-bnt").disabled = false;
+$("#b64").hide();
+
+}
+
+document.querySelector("#inp").addEventListener("change", readFile);
+document.getElementById("inp").value = "";
+
+document.getElementById("inp").value == "" ? document.getElementById("pagar-bnt").disabled = true : document.getElementById("pagar-bnt").disabled = false;
 </script>

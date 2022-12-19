@@ -35,9 +35,16 @@ function carrgarParcela($url){
                     <button name="detalhesObjeto" value="'.$obj->nome.'" type="submit" class="btn btn-warning" data-toggle="collapse" data-target="#collapseOne">
                         <img src="./img/papel-moeda.png" alt="Nao pago png" width="23" height="20"> 
                     </button>
-                    <button value="'.$obj->nome.'" type="button" class="btn btn-success">Pagar</button>
+                    <button id="pagar-bnt" value="'.$obj->nome.'" type="button" class="btn btn-success" disabled>Pagar</button>
+                    <input id="inp" type="file" class="btn btn-primary" type="button" value="Input">
+                    <p id="b64"></p>
                 </li> 
             </form>  
+            <script>
+                $(".btn.btn-success").click(function (e) { 
+                    pagarParcela(e.target.value, document.getElementById("b64").textContent);
+                });
+            </script>
         ';
 
         }
@@ -52,15 +59,19 @@ function lerTodosArquivos($ano){
     foreach($arquivos as $title){
         carrgarParcela($title);
     }
-    echo '<script>
-            $(".btn.btn-success").click(function (e) { 
-                pagarParcela(e.target.value);
-            });
-        </script>';
 }
 
 function objToString($obj){
     return '{"valorDaParcela": "'.$obj->valor.'", "dataPagamento": "'.$obj->dataPagamento.'", "parcela": "'.$obj->parcela.'", "pago": "'.$obj->pago.'", "nome": "'.$obj->nome.'"}';
 }
 
+function mostrarComprovantes($user){
+    $parcelas = array();
+    $arquivos = glob("{*.txt,*.json}", GLOB_BRACE);
+    foreach($arquivos as $key => $arquivo) {
+        if($arquivo->lancador == $user->name){
+            array_push($parcelas, $arquivo)
+        }
+    }
+}
 ?>
