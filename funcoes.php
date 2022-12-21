@@ -136,8 +136,4 @@ function getObjectByName($name){
     $json = fgets($arquivo);
     return json_decode($json);
 }
-
-function getAllObjectsByUser($user){
-
-}
 ?>
