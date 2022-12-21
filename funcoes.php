@@ -20,6 +20,7 @@ echo "pagar parcela ".$pagarParcela;
 echo "pagar parcela ".$comprovante; */
 
 if($pagarParcela !== null && $comprovante !== null) {
+
     $arquivo = fopen($pagarParcela.".txt", 'r') or die("Unable to open file!");
     $json = fgets($arquivo);
     $obj = json_decode($json);
@@ -27,6 +28,10 @@ if($pagarParcela !== null && $comprovante !== null) {
     $obj->img = $comprovante;
     echo $obj->pago;
     saveFile($obj->nome, json_encode($obj));
+
+    $pagarParcela = null;
+    $comprovante = null;
+    
 }elseif($pagarParcela == null && $pegarParcela == null){
     
     if($parcelas == 0){
@@ -43,7 +48,7 @@ if($pagarParcela !== null && $comprovante !== null) {
         $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.$dataHoje.'", "parcela": "1", "pago": "false", "nome": "'.$nome.'", "lancador": "'.$lancador.'"}';
     
         saveFile($nome, $json);
-        teste();
+        //teste();
     }
     $arquivos = glob("{*.txt}", GLOB_BRACE);
     $idParcela = sizeof($arquivos)+1;
@@ -57,7 +62,7 @@ if($pagarParcela !== null && $comprovante !== null) {
         $json = '{"valorDaParcela": "'.$valor.'", "dataPagamento": "'.date('d-m-Y', strtotime($mes)).'", "parcela": "'.($idParcela+$i).'", "pago": "false", "nome": "'.$nome.'", "lancador": "'.$lancador.'"}';
     
         saveFile($nome, $json);
-        teste();
+        //teste();
     
     }
 
@@ -136,4 +141,5 @@ function getObjectByName($name){
     $json = fgets($arquivo);
     return json_decode($json);
 }
+
 ?>

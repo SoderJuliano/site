@@ -65,13 +65,36 @@ function objToString($obj){
     return '{"valorDaParcela": "'.$obj->valor.'", "dataPagamento": "'.$obj->dataPagamento.'", "parcela": "'.$obj->parcela.'", "pago": "'.$obj->pago.'", "nome": "'.$obj->nome.'"}';
 }
 
-function mostrarComprovantes($user){
-    $parcelas = array();
+function mostrarComprovantes($user, $ano){
+    echo '
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Data de pagamento</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Comprovante</th>
+        </tr>
+    </thead>
+    <tbody>';
+
     $arquivos = glob("{*.txt,*.json}", GLOB_BRACE);
-    foreach($arquivos as $key => $arquivo) {
-        if($arquivo->lancador == $user->name){
-            array_push($parcelas, $arquivo)
+    foreach($arquivos as $key => $url) {
+        
+        $arquivo = fopen($url, 'r') or die("Unable to open file!");
+        $json = fgets($arquivo);
+        $obj = json_decode($json);
+        if($obj->lancador == $user && str_contains($obj->dataPagamento, $ano)){
+            echo '<tr><th scope="row">'.$key.'</th>';
+            echo '<td>'.$obj->dataPagamento.'</td>';
+            echo '<td>R$ '.$obj->valorDaParcela.'</td>';
+            echo '<td><img src="'.$obj->img.'" class="img-fluid" alt="Imagem não encontrada!" /></td>';
         }
-    }
+    }    
+    echo '</tbody>';
+}
+
+function getOnlineUser(){
+    $arquivo = fopen("online.txt", 'r') or die("No user found!");
+    return fgets($arquivo);
 }
 ?>

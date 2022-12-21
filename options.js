@@ -9,6 +9,7 @@ const Teste = {
 }
 
 function validaLogin(nome, senha){
+    console.log('validando login');
     if(nome == 'Juliano'){
         localStorage.setItem('login', JSON.stringify(Julianos));
         return senha == Julianos.senha;
@@ -18,4 +19,8 @@ function validaLogin(nome, senha){
         return senha == Teste.senha;
     }
     return false;
+}
+
+function getNomeUsuarioLogado(){
+    return JSON.parse(localStorage.getItem('login')).name;
 }

@@ -17,7 +17,21 @@
     <?php include_once('carregarParcela.php'); ?>
 
 </head>
-
+<script src="options.js"></script>
+<script>
+    if(localStorage.getItem("login")){
+        const user = JSON.parse(localStorage.getItem("login"));
+        if(!validaLogin(user.name, user.senha)){
+            window.location.href = "index.php";
+        }else{
+        $.post('login.php', { loginName: user.name }, function(response) {
+            console.log('login efetuado');
+        });
+        }
+    }else{
+        window.location.href = "/site/";
+    }
+</script>
 <body>
 
 <div class="container">
@@ -122,6 +136,9 @@
             <span class="input-group-text">Lançador do valor</span> 
             <script>
               const user = JSON.parse(localStorage.getItem('login'));
+              if(!user){
+                window.location.href = 'index.php';
+              }
               document.write('<input name="lancadorParcela" value="'+user.name+'" class="input-group-text" />');
             </script>
             </div>
@@ -150,7 +167,6 @@
 
 </div>
 </body>
-<script src="options.js"></script>
 <script>
   $("#selectAno").change(function (e) { 
     e.preventDefault();
@@ -168,17 +184,10 @@
       });
     });
   }
-  if(localStorage.getItem("login")){
-      const user = JSON.parse(localStorage.getItem("login"));
-      if(!validaLogin(user.name, user.senha)){
-          window.location.href = "index.php";
-      }
-    }else{
-      window.location.href = "/site/";
-  }
+
   $( document ).ready(function() {
     $("#visaoParcelas").click();
-});
+  });
 
 function readFile() {
         if (!this.files || !this.files[0]) return;
