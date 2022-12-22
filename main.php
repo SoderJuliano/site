@@ -42,6 +42,11 @@
       <img src="./img/php.png" alt="" width="40" height="30" class="d-inline-block align-text-top">
       Feito usando Bootstrap & PHP
     </a>
+    <span class="badge bg-success">Online <span id="nav-bar" class="badge bg-light text-dark"></span></span>
+    <script>
+      const user = JSON.parse(localStorage.getItem("login"));
+      $("#nav-bar").text(user.name);
+    </script>
   </div>
 </nav>  
         <div class="row align-items-center">
@@ -172,10 +177,7 @@
     e.preventDefault();
       $.post('carregarParcela.php', { trocouAno: $("#selectAno").val() }, function(response) {
         $("#conteudoCard").html(response);
-        $.post('login.php', { loginAno: $("#selectAno").val() }, function(response) {
-            console.log('alterado ano vingente');
-            atualizaAnovigente("Teste", response);
-        });
+        atualizaAnovigente("Teste", $("#selectAno").val());
       });
   });
 

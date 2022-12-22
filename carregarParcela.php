@@ -1,10 +1,13 @@
 <?php
 
 $novoAno = $_POST['trocouAno'];
+$userName = $_POST['userName'];
 
-if ($novoAno != null){
+if ($novoAno != null && $userName == null){
     lerTodosArquivos($novoAno);
-}  
+}elseif($novoAno != null && $userName != null){
+    mostrarComprovantes($userName, $novoAno);
+}
 
 function carrgarParcela($url){
     $arquivo = fopen($url, 'r') or die("Unable to open file!");
@@ -65,8 +68,7 @@ function objToString($obj){
     return '{"valorDaParcela": "'.$obj->valor.'", "dataPagamento": "'.$obj->dataPagamento.'", "parcela": "'.$obj->parcela.'", "pago": "'.$obj->pago.'", "nome": "'.$obj->nome.'"}';
 }
 
-function mostrarComprovantes($user, $ano){
-    echo $user. ' ' . $ano;
+function mostrarComprovantes($nome, $ano){
     echo '
     <thead>
         <tr>
@@ -84,7 +86,7 @@ function mostrarComprovantes($user, $ano){
         $arquivo = fopen($url, 'r') or die("Unable to open file!");
         $json = fgets($arquivo);
         $obj = json_decode($json);
-        if($obj->lancador == $user && str_contains($obj->dataPagamento, $ano)){
+        if($obj->lancador == $nome && str_contains($obj->dataPagamento, $ano)){
             echo '<tr><th scope="row">'.$key.'</th>';
             echo '<td>'.$obj->dataPagamento.'</td>';
             echo '<td>R$ '.$obj->valorDaParcela.'</td>';
@@ -94,7 +96,7 @@ function mostrarComprovantes($user, $ano){
     echo '</tbody>';
 }
 
-function getOnlineUser(){
+/* function getOnlineUser(){
     $arquivo = fopen("online.txt", 'r') or die("No user found!");
     return fgets($arquivo);
 }
@@ -110,5 +112,5 @@ function getAnoVingente(){
     $obj = json_decode($online);
     //echo $online;
     return $obj->anoVigente;
-}
+} */
 ?>
