@@ -6,16 +6,31 @@ function saveFileLogin($name, $value){
     $txt = $value;
     fwrite($myfile, $txt);
     fclose($myfile);
-}
-    echo 'Iniciando login';
+}  
+
+function saveFileAnoVigente($ano){
+    $arquivo = fopen("online.txt", 'r') or die("No user found!");
+    $json = fgets($arquivo);
+    $obj = json_decode($json);
+
+    $obj->anoVigente = $ano;
+    $string = json_encode($obj);
     
+    fwrite($arquivo, $string);
+    fclose($arquivo);
+    echo $obj->anoVigente;
+}
     $nome = $_POST['loginName'];
     $ano = $_POST['loginAno'];
 
-    $string = '{"nome": "'.$nome.'", "anoVigente": "'.$ano.'"}';
+    if($nome && $ano){
 
-    saveFileLogin("online", $string);
+        $string = '{"nome": "'.$nome.'", "anoVigente": "'.$ano.'"}';
+        saveFileLogin("online", $string);
+        echo 'realizado login'; 
 
-    echo 'login efetuado '.$nome;
+    }elseif($nome==null && $ano){
+        saveFileAnoVigente($ano);
+    }
 
 ?>

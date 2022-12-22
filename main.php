@@ -15,16 +15,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <?php include_once('carregarParcela.php'); ?>
-
+    <script src="options.js"></script>
 </head>
-<script src="options.js"></script>
+
 <script>
     if(localStorage.getItem("login")){
         const user = JSON.parse(localStorage.getItem("login"));
         if(!validaLogin(user.name, user.senha)){
             window.location.href = "index.php";
         }else{
-        $.post('login.php', { loginName: user.name, loginAno: "2022" }, function(response) {
+        $.post('login.php', { loginName: user.name, loginAno: user.anoVigente }, function(response) {
             console.log('login efetuado');
         });
         }
@@ -172,6 +172,10 @@
     e.preventDefault();
       $.post('carregarParcela.php', { trocouAno: $("#selectAno").val() }, function(response) {
         $("#conteudoCard").html(response);
+        $.post('login.php', { loginAno: $("#selectAno").val() }, function(response) {
+            console.log('alterado ano vingente');
+            atualizaAnovigente("Teste", response);
+        });
       });
   });
 

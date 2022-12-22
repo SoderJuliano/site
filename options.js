@@ -1,24 +1,40 @@
-const Julianos = {
+let Julianos = {
     name: 'Juliano',   
-    senha: 'soder2022'
+    senha: 'soder2022',
+    anoVigente: '2022'
 }
 
-const Teste = {
+let Teste = {
     name: 'Teste',   
-    senha: 'teste123'
+    senha: 'teste123',
+    anoVigente: '2022'
 }
 
 function validaLogin(nome, senha){
     console.log('validando login');
     if(nome == 'Juliano'){
-        localStorage.setItem('login', JSON.stringify(Julianos));
+        if(!localStorage.getItem('login')){
+            localStorage.setItem('login', JSON.stringify(Julianos));
+        }
         return senha == Julianos.senha;
     }
     if(nome == 'Teste'){
-        localStorage.setItem('login', JSON.stringify(Teste));
+        if(!localStorage.getItem('login')){
+            localStorage.setItem('login', JSON.stringify(Teste));
+        }
         return senha == Teste.senha;
     }
     return false;
+}
+
+function atualizaAnovigente(nome, ano){
+    if(nome == 'Juliano'){
+        Julianos.anoVigente = ano;
+        localStorage.setItem('login', JSON.stringify(Julianos));
+    }else{
+        Teste.anoVigente = ano;
+        localStorage.setItem('login', JSON.stringify(Teste)); 
+    }
 }
 
 function getNomeUsuarioLogado(){
