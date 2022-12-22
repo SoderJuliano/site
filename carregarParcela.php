@@ -66,6 +66,7 @@ function objToString($obj){
 }
 
 function mostrarComprovantes($user, $ano){
+    echo $user. ' ' . $ano;
     echo '
     <thead>
         <tr>
@@ -96,5 +97,18 @@ function mostrarComprovantes($user, $ano){
 function getOnlineUser(){
     $arquivo = fopen("online.txt", 'r') or die("No user found!");
     return fgets($arquivo);
+}
+
+function getUserName(){
+    $online = getOnlineUser();
+    $obj = json_decode($online);
+    //echo $online;
+    return $obj->nome;
+}
+function getAnoVingente(){
+    $online = getOnlineUser();
+    $obj = json_decode($online);
+    //echo $online;
+    return $obj->anoVigente;
 }
 ?>

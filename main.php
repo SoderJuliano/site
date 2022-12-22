@@ -24,7 +24,7 @@
         if(!validaLogin(user.name, user.senha)){
             window.location.href = "index.php";
         }else{
-        $.post('login.php', { loginName: user.name }, function(response) {
+        $.post('login.php', { loginName: user.name, loginAno: "2022" }, function(response) {
             console.log('login efetuado');
         });
         }

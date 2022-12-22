@@ -1,1 +1,1 @@
-Teste
+{"nome": "Teste", "anoVigente": "2022"}

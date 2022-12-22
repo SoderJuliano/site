@@ -1,16 +1,21 @@
 <?php
-function saveFile($name, $value){
+function saveFileLogin($name, $value){
+    
     $location = $name.".txt";
     $myfile = fopen($location, "w") or die("Unable to open file!");
     $txt = $value;
     fwrite($myfile, $txt);
     fclose($myfile);
 }
+    echo 'Iniciando login';
     
-    $login = $_POST['loginName'];
+    $nome = $_POST['loginName'];
+    $ano = $_POST['loginAno'];
 
-    saveFile("online", $login);
+    $string = '{"nome": "'.$nome.'", "anoVigente": "'.$ano.'"}';
 
-    echo 'login efetuado '.$login;
+    saveFileLogin("online", $string);
+
+    echo 'login efetuado '.$nome;
 
 ?>

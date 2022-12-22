@@ -4,9 +4,10 @@ include_once('carregarParcela.php'); ?>
 
 <body>
 <table class="table">
-    <script>console.log('mostrarComprovantes');</script>
     <?php 
-        mostrarComprovantes(getOnlineUser(), "2022"); 
+        echo "<script>console.log(".getUserName().")</script>";
+        echo "<script>console.log('retornou')</script>";
+        mostrarComprovantes(getUserName(), getAnoVingente()); 
     ?>
 </table>
 </body>
